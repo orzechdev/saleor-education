@@ -1,39 +1,31 @@
 import React from "react";
-import * as S from "./App.styles";
-import logo from "./logo.svg";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout/Layout";
+import Designer from "./pages/Designer";
+import Developer from "./pages/Developer";
+import Home from "./pages/Home";
+import NoPage from "./pages/NoPage";
+import Salesperson from "./pages/Salesperson";
 
 function App() {
   return (
-    <S.App>
-      <S.Header>
-        <S.HeaderTitleLink href="/">
-          <S.HeaderTitle>
-            <S.HeaderTitleLogo src={logo} alt="logo" />
-            education
-          </S.HeaderTitle>
-        </S.HeaderTitleLink>
-        <S.HeaderMenu>
-          <S.HeaderMenuItem href="/developer">
-            <>
-              <h2>Developer &rarr;</h2>
-              <p>Development guide</p>
-            </>
-          </S.HeaderMenuItem>
-          <S.HeaderMenuItem href="/designer">
-            <>
-              <h2>Designer &rarr;</h2>
-              <p>Design guide</p>
-            </>
-          </S.HeaderMenuItem>
-          <S.HeaderMenuItem href="/salesperson">
-            <>
-              <h2>Salesperson &rarr;</h2>
-              <p>Store management guide</p>
-            </>
-          </S.HeaderMenuItem>
-        </S.HeaderMenu>
-      </S.Header>
-    </S.App>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<Home />} />
+          <Route path="developer" element={<Layout />}>
+            <Route index element={<Developer />} />
+          </Route>
+          <Route path="designer" element={<Layout />}>
+            <Route index element={<Designer />} />
+          </Route>
+          <Route path="salesperson" element={<Layout />}>
+            <Route index element={<Salesperson />} />
+          </Route>
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
