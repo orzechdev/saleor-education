@@ -33,7 +33,7 @@ export const HeaderMenu = styled.div`
 
 export const HeaderMenuItem = styled.a`
   width: 200px;
-  color: #2a2a2a;
+  color: #28234a;
   background: #fff;
   border: 1px solid #00000018;
   border-radius: 1rem;
