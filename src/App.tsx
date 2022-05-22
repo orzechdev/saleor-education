@@ -5,7 +5,7 @@ import {
   designerMenuItems,
   developerMenuItems,
   salespersonMenuItems,
-} from "./misc";
+} from "./misc/items";
 import Designer from "./pages/Designer";
 import Developer from "./pages/Developer";
 import Home from "./pages/Home";

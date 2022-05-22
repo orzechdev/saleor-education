@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { MenuItem, MenuPath } from "../../misc";
+import { MenuItem, MenuPath } from "../../misc/items";
 import Logo from "../Logo";
 import * as S from "./styles";
 
