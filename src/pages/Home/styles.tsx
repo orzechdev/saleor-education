@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Root = styled.div`
@@ -11,7 +12,7 @@ export const Header = styled.header`
   align-items: center;
 `;
 
-export const HeaderTitleLink = styled.a`
+export const HeaderTitleLink = styled(Link)`
   text-decoration: none;
   margin: 20vmin 0 0 0;
 `;
@@ -31,7 +32,7 @@ export const HeaderMenu = styled.div`
   margin: 14vmin 0 20vmin 0;
 `;
 
-export const HeaderMenuItem = styled.a`
+export const HeaderMenuItem = styled(Link)`
   width: 200px;
   color: #28234a;
   background: #fff;

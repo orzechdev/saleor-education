@@ -17,10 +17,10 @@ const Developer: React.FC = () => {
     return developerState.context.knowledge?.includes(knowledge.id);
   };
   const isTechStackFrontendChecked = (techStack: TechStackFrontendId) => {
-    return developerState.context.techStackFrontend?.includes(techStack);
+    return developerState.context.techStackFrontend === techStack;
   };
   const isTechStackStyleChecked = (techStack: TechStackStyleId) => {
-    return developerState.context.techStackStyle?.includes(techStack);
+    return developerState.context.techStackStyle === techStack;
   };
 
   const onKnowledgeChange = (knowledge: Knowledge) => {
@@ -47,6 +47,10 @@ const Developer: React.FC = () => {
       value: techStack,
     });
   };
+
+  const canGoNext =
+    developerState.context.techStackStyle &&
+    developerState.context.techStackFrontend;
 
   return (
     <S.Root>
@@ -114,9 +118,14 @@ const Developer: React.FC = () => {
         ))}
       </S.Options>
       <S.Actions>
-        <button type="button" disabled={true}>
-          Next
-        </button>
+        <S.LeftActions></S.LeftActions>
+        <S.RightActions>
+          {canGoNext && (
+            <S.RightActionItem to="/developer/setup">
+              <h2>Next &rarr;</h2>
+            </S.RightActionItem>
+          )}
+        </S.RightActions>
       </S.Actions>
     </S.Root>
   );

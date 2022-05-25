@@ -1,10 +1,6 @@
-export const developerPaths = ["chapter-1", "chapter-2", "chapter-3"] as const;
-export const designerPaths = ["chapter-1", "chapter-2", "chapter-3"] as const;
-export const salespersonPaths = [
-  "chapter-1",
-  "chapter-2",
-  "chapter-3",
-] as const;
+export const developerPaths = ["setup"] as const;
+export const designerPaths = [] as const;
+export const salespersonPaths = [] as const;
 
 export type DeveloperPath = typeof developerPaths[number];
 export type DesignerPath = typeof designerPaths[number];
@@ -19,45 +15,11 @@ export interface MenuItem<T> {
 
 export const developerMenuItems: MenuItem<DeveloperPath>[] = [
   {
-    path: "chapter-1",
-    label: "Chapter 1",
-  },
-  {
-    path: "chapter-2",
-    label: "Chapter 2",
-  },
-  {
-    path: "chapter-3",
-    label: "Chapter 3",
+    path: "setup",
+    label: "Setup",
   },
 ];
 
-export const designerMenuItems: MenuItem<DesignerPath>[] = [
-  {
-    path: "chapter-1",
-    label: "Chapter 1",
-  },
-  {
-    path: "chapter-2",
-    label: "Chapter 2",
-  },
-  {
-    path: "chapter-3",
-    label: "Chapter 3",
-  },
-];
+export const designerMenuItems: MenuItem<DesignerPath>[] = [];
 
-export const salespersonMenuItems: MenuItem<SalespersonPath>[] = [
-  {
-    path: "chapter-1",
-    label: "Chapter 1",
-  },
-  {
-    path: "chapter-2",
-    label: "Chapter 2",
-  },
-  {
-    path: "chapter-3",
-    label: "Chapter 3",
-  },
-];
+export const salespersonMenuItems: MenuItem<SalespersonPath>[] = [];

@@ -1,6 +1,8 @@
-import React from "react";
+import { useActor } from "@xstate/react";
+import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
+import { StateContext } from "./components/StateProvider";
 import {
   designerMenuItems,
   developerMenuItems,
@@ -8,11 +10,19 @@ import {
 } from "./misc/items";
 import Designer from "./pages/Designer";
 import Developer from "./pages/Developer";
+import DeveloperSetup from "./pages/DeveloperSetup";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Salesperson from "./pages/Salesperson";
 
 function App() {
+  const globalServices = useContext(StateContext);
+  const [developerState] = useActor(globalServices.developerStateService);
+
+  const developerSetupAllowed =
+    developerState.context.techStackStyle &&
+    developerState.context.techStackFrontend;
+
   return (
     <BrowserRouter>
       <Routes>
@@ -23,18 +33,15 @@ function App() {
             element={<Layout path="developer" menuItems={developerMenuItems} />}
           >
             <Route index element={<Developer />} />
-            <Route path="chapter-1" element={<Developer />} />
-            <Route path="chapter-2" element={<Developer />} />
-            <Route path="chapter-3" element={<Developer />} />
+            {developerSetupAllowed && (
+              <Route path="setup" element={<DeveloperSetup />} />
+            )}
           </Route>
           <Route
             path="designer"
             element={<Layout path="designer" menuItems={designerMenuItems} />}
           >
             <Route index element={<Designer />} />
-            <Route path="chapter-1" element={<Designer />} />
-            <Route path="chapter-2" element={<Designer />} />
-            <Route path="chapter-3" element={<Designer />} />
           </Route>
           <Route
             path="salesperson"
@@ -43,9 +50,6 @@ function App() {
             }
           >
             <Route index element={<Salesperson />} />
-            <Route path="chapter-1" element={<Salesperson />} />
-            <Route path="chapter-2" element={<Salesperson />} />
-            <Route path="chapter-3" element={<Salesperson />} />
           </Route>
           <Route path="*" element={<NoPage />} />
         </Route>

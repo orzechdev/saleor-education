@@ -36,6 +36,12 @@ export const Menu = styled.ul`
   @media (max-width: ${layout.width.px1280}) {
     padding: 0 2rem;
   }
+  @media (max-width: ${layout.width.px960}) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    gap: 0.5rem 1rem;
+  }
 `;
 
 export const MenuHeader = styled.li`
@@ -45,14 +51,26 @@ export const MenuHeader = styled.li`
     padding: 1rem;
     text-decoration: none;
   }
+  @media (max-width: ${layout.width.px960}) {
+    width: 100%;
+  }
 `;
 
-export const MenuItem = styled.li`
+export const MenuItem = styled.li<{ active: boolean }>`
   background: #fff;
   a {
     color: #2a2a2a;
     display: block;
     padding: 0.5rem 1rem;
     text-decoration: none;
+    font-weight: ${(props) => (props.active ? "bold" : "normal")};
+  }
+  @media (max-width: ${layout.width.px960}) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      padding: 1rem 2rem;
+    }
   }
 `;

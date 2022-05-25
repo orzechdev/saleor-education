@@ -11,6 +11,14 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+  color: #6099ff;
+}
+
+pre {
+  background: #fcfcfc;
+  border: 1px solid #00000018;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
 }
 
 html {

@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { MenuItem, MenuPath } from "../../misc/items";
 import Logo from "../Logo";
 import * as S from "./styles";
@@ -9,6 +9,8 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ path, menuItems }) => {
+  const location = useLocation();
+
   return (
     <S.Root>
       <S.Nav>
@@ -18,14 +20,19 @@ const Layout: React.FC<LayoutProps> = ({ path, menuItems }) => {
               <Logo />
             </Link>
           </S.MenuHeader>
-          {/* <S.MenuItem>
-            <Link to={`/${path}`}>Start</Link>
-          </S.MenuItem>
-          {menuItems.map(({ path: subPath, label }) => (
-            <S.MenuItem>
-              <Link to={`/${path}/${subPath}`}>{label}</Link>
+          {menuItems.length > 0 && (
+            <S.MenuItem active={location.pathname === `/${path}`}>
+              <Link to={`/${path}`}>Start</Link>
             </S.MenuItem>
-          ))} */}
+          )}
+          {menuItems.map(({ path: subPath, label }) => {
+            const subPathUrl = `/${path}/${subPath}`;
+            return (
+              <S.MenuItem active={location.pathname === subPathUrl}>
+                <Link to={subPathUrl}>{label}</Link>
+              </S.MenuItem>
+            );
+          })}
         </S.Menu>
       </S.Nav>
 

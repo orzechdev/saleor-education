@@ -9,6 +9,10 @@ export const Title = styled.h2`
   margin: 0 0 4rem 0;
 `;
 
+export const SubTitle = styled.h3`
+  margin: 0 0 2rem 0;
+`;
+
 export const Options = styled.div`
   margin: 0 0 4rem 0;
   font-size: 1.2rem;
