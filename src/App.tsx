@@ -6,6 +6,7 @@ import { StateContext } from "./components/StateProvider";
 import {
   designerMenuItems,
   developerMenuItems,
+  DeveloperPath,
   salespersonMenuItems,
 } from "./misc/items";
 import Designer from "./pages/Designer";
@@ -19,9 +20,12 @@ function App() {
   const globalServices = useContext(StateContext);
   const [developerState] = useActor(globalServices.developerStateService);
 
-  const developerSetupAllowed =
-    developerState.context.techStackStyle &&
-    developerState.context.techStackFrontend;
+  const developerMenuAllowList: Record<DeveloperPath, boolean> = {
+    setup: !!(
+      developerState.context.techStackStyle &&
+      developerState.context.techStackFrontend
+    ),
+  };
 
   return (
     <BrowserRouter>
@@ -30,10 +34,17 @@ function App() {
           <Route index element={<Home />} />
           <Route
             path="developer"
-            element={<Layout path="developer" menuItems={developerMenuItems} />}
+            element={
+              <Layout
+                path="developer"
+                menuItems={developerMenuItems.filter(
+                  (item) => developerMenuAllowList[item.path]
+                )}
+              />
+            }
           >
             <Route index element={<Developer />} />
-            {developerSetupAllowed && (
+            {developerMenuAllowList.setup && (
               <Route path="setup" element={<DeveloperSetup />} />
             )}
           </Route>
