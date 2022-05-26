@@ -1,4 +1,4 @@
-export const developerPaths = ["setup"] as const;
+export const developerPaths = ["setup", "setup-frontend"] as const;
 export const designerPaths = [] as const;
 export const salespersonPaths = [] as const;
 
@@ -17,6 +17,10 @@ export const developerMenuItems: MenuItem<DeveloperPath>[] = [
   {
     path: "setup",
     label: "Setup",
+  },
+  {
+    path: "setup-frontend",
+    label: "Setup frontend",
   },
 ];
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { layout } from "../../consts";
 
 export const Root = styled.div`
   font-size: 1.4rem;
@@ -17,16 +18,24 @@ export const Options = styled.div`
 export const Actions = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 1.5rem;
+  margin: 0 0 4rem 0;
 `;
 
 export const LeftActions = styled.div`
   display: flex;
   justify-content: left;
+  @media (max-width: ${layout.width.px960}) {
+    width: 100%;
+  }
 `;
 
 export const RightActions = styled.div`
   display: flex;
   justify-content: right;
+  @media (max-width: ${layout.width.px960}) {
+    width: 100%;
+  }
 `;
 
 export const ActionItem = styled(Link)`
@@ -45,6 +54,9 @@ export const ActionItem = styled(Link)`
   }
   h2 {
     font-size: 1.2rem;
+  }
+  @media (max-width: ${layout.width.px960}) {
+    width: 100%;
   }
 `;
 

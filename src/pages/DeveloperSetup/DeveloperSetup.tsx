@@ -92,7 +92,11 @@ const DeveloperSetup: React.FC = () => {
             <h2>&larr; Back</h2>
           </S.LeftActionItem>
         </S.LeftActions>
-        <S.RightActions></S.RightActions>
+        <S.RightActions>
+          <S.RightActionItem to="/developer/setup-frontend">
+            <h2>Next &rarr;</h2>
+          </S.RightActionItem>
+        </S.RightActions>
       </S.Actions>
     </S.Root>
   );

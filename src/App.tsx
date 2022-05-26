@@ -11,7 +11,9 @@ import {
 } from "./misc/items";
 import Designer from "./pages/Designer";
 import Developer from "./pages/Developer";
+import { KnowledgeId } from "./pages/Developer/types";
 import DeveloperSetup from "./pages/DeveloperSetup";
+import DeveloperSetupFrontend from "./pages/DeveloperSetupFrontend";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Salesperson from "./pages/Salesperson";
@@ -24,6 +26,13 @@ function App() {
     setup: !!(
       developerState.context.techStackStyle &&
       developerState.context.techStackFrontend
+    ),
+    "setup-frontend": !!(
+      developerState.context.techStackStyle &&
+      developerState.context.techStackFrontend &&
+      !developerState.context.knowledge?.includes(
+        developerState.context.techStackFrontend
+      )
     ),
   };
 
@@ -46,6 +55,12 @@ function App() {
             <Route index element={<Developer />} />
             {developerMenuAllowList.setup && (
               <Route path="setup" element={<DeveloperSetup />} />
+            )}
+            {developerMenuAllowList["setup-frontend"] && (
+              <Route
+                path="setup-frontend"
+                element={<DeveloperSetupFrontend />}
+              />
             )}
           </Route>
           <Route

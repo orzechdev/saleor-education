@@ -19,11 +19,14 @@ export const Nav = styled.nav`
 export const Main = styled.main`
   flex: 1;
   margin: 4rem 6rem;
+  width: calc(100vw - 12rem);
   @media (max-width: ${layout.width.px1280}) {
     margin: 4rem 2rem;
+    width: calc(100vw - 4rem);
   }
   @media (max-width: ${layout.width.px960}) {
     margin: 0 4rem;
+    width: calc(100vw - 8rem);
   }
 `;
 

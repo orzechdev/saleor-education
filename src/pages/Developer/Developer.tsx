@@ -78,7 +78,7 @@ const Developer: React.FC = () => {
         })}
       </S.Options>
       <S.Options>
-        <p>What frontend technology do you want to use?</p>
+        <p>What frontend do you want to use?</p>
         {techStackFrontendList.map((techStackFrontend) => (
           <React.Fragment key={techStackFrontend.id}>
             <input
@@ -98,7 +98,7 @@ const Developer: React.FC = () => {
         ))}
       </S.Options>
       <S.Options>
-        <p>What styling technology do you want to use?</p>
+        <p>What styling do you want to use?</p>
         {techStackStyleList.map((techStackStyle) => (
           <React.Fragment key={techStackStyle.id}>
             <input
