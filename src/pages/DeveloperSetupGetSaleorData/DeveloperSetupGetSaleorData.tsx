@@ -158,11 +158,15 @@ const DeveloperSetupGetSaleorData: React.FC = () => {
       </S.Options>
       <S.Actions>
         <S.LeftActions>
-          <S.LeftActionItem to="/developer/setup">
+          <S.LeftActionItem to="/developer/setup-frontend">
             <h2>&larr; Back</h2>
           </S.LeftActionItem>
         </S.LeftActions>
-        <S.RightActions></S.RightActions>
+        <S.RightActions>
+          <S.RightActionItem to="/developer/setup-get-saleor-data-client">
+            <h2>Next &rarr;</h2>
+          </S.RightActionItem>
+        </S.RightActions>
       </S.Actions>
     </S.Root>
   );
