@@ -21,6 +21,10 @@ export const knowledgeList: Knowledge[] = [
     id: "gatsbyjs",
     name: "Gatsby.js",
   },
+  {
+    id: "graphql",
+    name: "GraphQL",
+  },
 ];
 
 export const techStackFrontendList: TechStackFrontend[] = [

@@ -3,7 +3,8 @@ export type KnowledgeId =
   | "typescript"
   | "react"
   | "nextjs"
-  | "gatsbyjs";
+  | "gatsbyjs"
+  | "graphql";
 
 export interface Knowledge {
   id: KnowledgeId;

@@ -1,4 +1,9 @@
-export const developerPaths = ["setup", "setup-frontend"] as const;
+export const developerPaths = [
+  "setup",
+  "setup-frontend",
+  "setup-get-saleor-data",
+  "setup-get-saleor-data-client",
+] as const;
 export const designerPaths = [] as const;
 export const salespersonPaths = [] as const;
 
@@ -20,7 +25,15 @@ export const developerMenuItems: MenuItem<DeveloperPath>[] = [
   },
   {
     path: "setup-frontend",
-    label: "Setup frontend",
+    label: "Setup - Create frontend",
+  },
+  {
+    path: "setup-get-saleor-data",
+    label: "Setup - Get data from Saleor",
+  },
+  {
+    path: "setup-get-saleor-data-client",
+    label: "Setup - Get data from Saleor - GraphQL client",
   },
 ];
 

@@ -11,9 +11,10 @@ import {
 } from "./misc/items";
 import Designer from "./pages/Designer";
 import Developer from "./pages/Developer";
-import { KnowledgeId } from "./pages/Developer/types";
 import DeveloperSetup from "./pages/DeveloperSetup";
 import DeveloperSetupFrontend from "./pages/DeveloperSetupFrontend";
+import DeveloperSetupGetSaleorData from "./pages/DeveloperSetupGetSaleorData";
+import DeveloperSetupGetSaleorDataClient from "./pages/DeveloperSetupGetSaleorDataClient";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Salesperson from "./pages/Salesperson";
@@ -33,6 +34,14 @@ function App() {
       !developerState.context.knowledge?.includes(
         developerState.context.techStackFrontend
       )
+    ),
+    "setup-get-saleor-data": !!(
+      developerState.context.techStackStyle &&
+      developerState.context.techStackFrontend
+    ),
+    "setup-get-saleor-data-client": !!(
+      developerState.context.techStackStyle &&
+      developerState.context.techStackFrontend
     ),
   };
 
@@ -60,6 +69,18 @@ function App() {
               <Route
                 path="setup-frontend"
                 element={<DeveloperSetupFrontend />}
+              />
+            )}
+            {developerMenuAllowList["setup-get-saleor-data"] && (
+              <Route
+                path="setup-get-saleor-data"
+                element={<DeveloperSetupGetSaleorData />}
+              />
+            )}
+            {developerMenuAllowList["setup-get-saleor-data-client"] && (
+              <Route
+                path="setup-get-saleor-data-client"
+                element={<DeveloperSetupGetSaleorDataClient />}
               />
             )}
           </Route>
