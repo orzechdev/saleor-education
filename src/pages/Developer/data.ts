@@ -34,7 +34,7 @@ export const techStackFrontendList: TechStackFrontend[] = [
   },
   {
     id: "nextjs",
-    name: "Next.js",
+    name: "Next.js (recommended)",
   },
   {
     id: "gatsbyjs",
@@ -65,6 +65,6 @@ export const techStackStyleList: TechStackStyle[] = [
   },
   {
     id: "tailwind-css",
-    name: "Tailwind CSS",
+    name: "Tailwind CSS (recommended)",
   },
 ];
