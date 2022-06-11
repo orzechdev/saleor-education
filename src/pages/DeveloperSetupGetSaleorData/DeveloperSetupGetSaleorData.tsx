@@ -1,6 +1,7 @@
 import { useActor } from "@xstate/react";
 import React, { useContext } from "react";
 import { StateContext } from "../../components/StateProvider";
+import { KnowledgeId } from "../Developer/types";
 import * as S from "./styles";
 
 const DeveloperSetupGetSaleorData: React.FC = () => {
@@ -158,9 +159,17 @@ const DeveloperSetupGetSaleorData: React.FC = () => {
       </S.Options>
       <S.Actions>
         <S.LeftActions>
-          <S.LeftActionItem to="/developer/setup-frontend">
-            <h2>&larr; Back</h2>
-          </S.LeftActionItem>
+          {developerState.context.knowledge?.includes(
+            developerState.context.techStackFrontend as KnowledgeId
+          ) ? (
+            <S.LeftActionItem to="/developer/setup">
+              <h2>&larr; Back</h2>
+            </S.LeftActionItem>
+          ) : (
+            <S.LeftActionItem to="/developer/setup-frontend">
+              <h2>&larr; Back</h2>
+            </S.LeftActionItem>
+          )}
         </S.LeftActions>
         <S.RightActions>
           <S.RightActionItem to="/developer/setup-get-saleor-data-client">
