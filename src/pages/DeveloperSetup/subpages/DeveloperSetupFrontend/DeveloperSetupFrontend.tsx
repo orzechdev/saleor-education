@@ -1,6 +1,6 @@
 import { useActor } from "@xstate/react";
 import React, { useContext } from "react";
-import { StateContext } from "../../components/StateProvider";
+import { StateContext } from "../../../../components/StateProvider";
 import * as S from "./styles";
 
 const DeveloperSetupFrontend: React.FC = () => {

@@ -1,63 +1,35 @@
-import { useActor } from "@xstate/react";
-import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import { StateContext } from "./components/StateProvider";
+import { useDeveloperAccessList } from "./hooks/useDeveloperAccessList";
 import {
   designerMenuItems,
   developerMenuItems,
-  DeveloperPath,
-  DeveloperSetupPath,
   salespersonMenuItems,
 } from "./misc/items";
 import Designer from "./pages/Designer";
 import Developer from "./pages/Developer";
-import DeveloperSetup from "./pages/DeveloperSetup";
-import DeveloperSetupFrontend from "./pages/DeveloperSetupFrontend";
-import DeveloperSetupGetSaleorData from "./pages/DeveloperSetupGetSaleorData";
-import DeveloperSetupGetSaleorDataClient from "./pages/DeveloperSetupGetSaleorDataClient";
+import DeveloperBuild, {
+  DeveloperBuildHomeShowcasePage,
+  DeveloperBuildProductListPage,
+  DeveloperBuildProductPage,
+  DeveloperBuildCategoryMenu,
+  DeveloperBuildCollectionMenu,
+  DeveloperBuildCartPage,
+  DeveloperBuildCheckoutPage,
+  DeveloperBuildOrderPage,
+} from "./pages/DeveloperBuild";
+import DeveloperDeploy from "./pages/DeveloperDeploy";
+import DeveloperSetup, {
+  DeveloperSetupFrontend,
+  DeveloperSetupGetSaleorData,
+  DeveloperSetupGetSaleorDataClient,
+} from "./pages/DeveloperSetup";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Salesperson from "./pages/Salesperson";
 
-interface AllowItem<T extends string | number | symbol> {
-  allow: boolean;
-  subAllowList?: Record<T, boolean>;
-}
-
 function App() {
-  const globalServices = useContext(StateContext);
-  const [developerState] = useActor(globalServices.developerStateService);
-
-  const developerSetupMenuAllowList: Record<DeveloperSetupPath, boolean> = {
-    frontend: !!(
-      developerState.context.techStackStyle &&
-      developerState.context.techStackFrontend &&
-      !developerState.context.knowledge?.includes(
-        developerState.context.techStackFrontend
-      )
-    ),
-    "get-saleor-data": !!(
-      developerState.context.techStackStyle &&
-      developerState.context.techStackFrontend
-    ),
-    "get-saleor-data-client": !!(
-      developerState.context.techStackStyle &&
-      developerState.context.techStackFrontend
-    ),
-  };
-  const developerMenuAllowList: Record<
-    DeveloperPath,
-    AllowItem<DeveloperSetupPath>
-  > = {
-    setup: {
-      allow: !!(
-        developerState.context.techStackStyle &&
-        developerState.context.techStackFrontend
-      ),
-      subAllowList: developerSetupMenuAllowList,
-    },
-  };
+  const developerAccessList = useDeveloperAccessList();
 
   return (
     <BrowserRouter>
@@ -70,12 +42,12 @@ function App() {
               <Layout
                 path="developer"
                 menuItems={developerMenuItems
-                  .filter((item) => developerMenuAllowList[item.path].allow)
+                  .filter((item) => developerAccessList[item.path].allow)
                   .map((item) => ({
                     ...item,
                     children: item.children?.filter(
                       (child) =>
-                        developerMenuAllowList[item.path].subAllowList?.[
+                        developerAccessList[item.path].subAccessList?.[
                           child.path
                         ]
                     ),
@@ -84,26 +56,84 @@ function App() {
             }
           >
             <Route index element={<Developer />} />
-            {developerMenuAllowList.setup && (
+            {developerAccessList.setup && (
               <Route path="setup" element={<DeveloperSetup />} />
             )}
-            {developerSetupMenuAllowList["frontend"] && (
+            {developerAccessList.setup.subAccessList?.["frontend"] && (
               <Route
                 path="setup/frontend"
                 element={<DeveloperSetupFrontend />}
               />
             )}
-            {developerSetupMenuAllowList["get-saleor-data"] && (
+            {developerAccessList.setup.subAccessList?.["get-saleor-data"] && (
               <Route
                 path="setup/get-saleor-data"
                 element={<DeveloperSetupGetSaleorData />}
               />
             )}
-            {developerSetupMenuAllowList["get-saleor-data-client"] && (
+            {developerAccessList.setup.subAccessList?.[
+              "get-saleor-data-client"
+            ] && (
               <Route
                 path="setup/get-saleor-data-client"
                 element={<DeveloperSetupGetSaleorDataClient />}
               />
+            )}
+            {developerAccessList.build && (
+              <Route path="build" element={<DeveloperBuild />} />
+            )}
+            {developerAccessList.build.subAccessList?.[
+              "home-showcase-page"
+            ] && (
+              <Route
+                path="build/home-showcase-page"
+                element={<DeveloperBuildHomeShowcasePage />}
+              />
+            )}
+            {developerAccessList.build.subAccessList?.["product-list-page"] && (
+              <Route
+                path="build/product-list-page"
+                element={<DeveloperBuildProductListPage />}
+              />
+            )}
+            {developerAccessList.build.subAccessList?.["product-page"] && (
+              <Route
+                path="build/product-page"
+                element={<DeveloperBuildProductPage />}
+              />
+            )}
+            {developerAccessList.build.subAccessList?.["category-menu"] && (
+              <Route
+                path="build/category-menu"
+                element={<DeveloperBuildCategoryMenu />}
+              />
+            )}
+            {developerAccessList.build.subAccessList?.["collection-menu"] && (
+              <Route
+                path="build/collection-menu"
+                element={<DeveloperBuildCollectionMenu />}
+              />
+            )}
+            {developerAccessList.build.subAccessList?.["cart-page"] && (
+              <Route
+                path="build/cart-page"
+                element={<DeveloperBuildCartPage />}
+              />
+            )}
+            {developerAccessList.build.subAccessList?.["checkout-page"] && (
+              <Route
+                path="build/checkout-page"
+                element={<DeveloperBuildCheckoutPage />}
+              />
+            )}
+            {developerAccessList.build.subAccessList?.["order-page"] && (
+              <Route
+                path="build/order-page"
+                element={<DeveloperBuildOrderPage />}
+              />
+            )}
+            {developerAccessList.deploy && (
+              <Route path="deploy" element={<DeveloperDeploy />} />
             )}
           </Route>
           <Route

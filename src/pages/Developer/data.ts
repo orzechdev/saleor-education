@@ -1,4 +1,9 @@
-import { Knowledge, TechStackFrontend, TechStackStyle } from "./types";
+import {
+  Knowledge,
+  StorePart,
+  TechStackFrontend,
+  TechStackStyle,
+} from "./types";
 
 export const knowledgeList: Knowledge[] = [
   {
@@ -66,5 +71,40 @@ export const techStackStyleList: TechStackStyle[] = [
   {
     id: "tailwind-css",
     name: "Tailwind CSS (recommended)",
+  },
+];
+
+export const storePartList: StorePart[] = [
+  {
+    id: "home-showcase-page",
+    name: "Home showcase page",
+  },
+  {
+    id: "product-list-page",
+    name: "Product list page",
+  },
+  {
+    id: "product-page",
+    name: "Product page",
+  },
+  {
+    id: "category-menu",
+    name: "Category menu",
+  },
+  {
+    id: "collection-menu",
+    name: "Collection menu",
+  },
+  {
+    id: "cart-page",
+    name: "Cart page",
+  },
+  {
+    id: "checkout-page",
+    name: "Checkout page",
+  },
+  {
+    id: "order-page",
+    name: "Order page",
   },
 ];

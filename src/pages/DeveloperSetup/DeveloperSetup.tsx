@@ -10,7 +10,7 @@ const DeveloperSetup: React.FC = () => {
 
   return (
     <S.Root>
-      <S.Title>Development guide - setup</S.Title>
+      <S.Title>Development guide - Setup</S.Title>
       <S.Options>
         {developerState.context.techStackFrontend === "react" && (
           <>

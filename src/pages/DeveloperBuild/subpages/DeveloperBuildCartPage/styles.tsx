@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { layout } from "../../consts";
+import { layout } from "../../../../consts";
 
 export const Root = styled.div`
   font-size: 1.4rem;

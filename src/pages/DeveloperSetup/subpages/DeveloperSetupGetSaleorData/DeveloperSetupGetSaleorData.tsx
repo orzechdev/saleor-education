@@ -1,7 +1,7 @@
 import { useActor } from "@xstate/react";
 import React, { useContext } from "react";
-import { StateContext } from "../../components/StateProvider";
-import { KnowledgeId } from "../Developer/types";
+import { StateContext } from "../../../../components/StateProvider";
+import { KnowledgeId } from "../../../Developer/types";
 import * as S from "./styles";
 
 const DeveloperSetupGetSaleorData: React.FC = () => {

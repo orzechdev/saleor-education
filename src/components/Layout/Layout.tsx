@@ -72,7 +72,7 @@ const Layout: React.FC<LayoutProps> = ({ path: mainPath, menuItems }) => {
                   >
                     {label}
                   </Link>
-                  <span>&#8963;</span>
+                  {!!children?.length && <span>&#8963;</span>}
                 </S.MenuItem>
                 {pathOpened &&
                   children?.map(({ path: subPath, label }) => {
@@ -80,7 +80,7 @@ const Layout: React.FC<LayoutProps> = ({ path: mainPath, menuItems }) => {
                     const subPathActive = location.pathname === subPathUrl;
 
                     return (
-                      <S.MenuItem active={subPathActive}>
+                      <S.MenuItem active={subPathActive} subMenu={true}>
                         <Link
                           to={subPathUrl}
                           onClick={() => setMobileOpened(false)}

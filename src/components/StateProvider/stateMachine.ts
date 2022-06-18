@@ -1,6 +1,7 @@
 import { createMachine, assign } from "xstate";
 import {
   KnowledgeId,
+  StorePartId,
   TechStackFrontendId,
   TechStackStyleId,
 } from "../../pages/Developer/types";
@@ -9,6 +10,7 @@ export type DeveloperStateContext = {
   knowledge?: KnowledgeId[];
   techStackFrontend?: TechStackFrontendId;
   techStackStyle?: TechStackStyleId;
+  storePart?: StorePartId[];
 };
 
 export const developerStateMachine = createMachine(
@@ -29,6 +31,10 @@ export const developerStateMachine = createMachine(
         | {
             type: "SET_TECH_STACK_STYLE";
             value?: TechStackStyleId;
+          }
+        | {
+            type: "SET_STORE_PART";
+            value?: StorePartId[];
           },
     },
     states: {
@@ -77,6 +83,21 @@ export const developerStateMachine = createMachine(
           },
         },
       },
+      storePart: {
+        id: "storePart",
+        initial: "start",
+        type: "parallel",
+        states: {
+          start: {
+            on: {
+              SET_STORE_PART: {
+                target: "start",
+                actions: "setStorePart",
+              },
+            },
+          },
+        },
+      },
     },
   },
   {
@@ -96,6 +117,10 @@ export const developerStateMachine = createMachine(
           event.type !== "SET_TECH_STACK_STYLE"
             ? context.techStackStyle
             : event.value,
+      }),
+      setStorePart: assign({
+        storePart: (context, event) =>
+          event.type !== "SET_STORE_PART" ? context.storePart : event.value,
       }),
     },
   }

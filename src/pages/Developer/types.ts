@@ -30,3 +30,18 @@ export interface TechStackStyle {
   id: TechStackStyleId;
   name: string;
 }
+
+export type StorePartId =
+  | "home-showcase-page"
+  | "product-list-page"
+  | "product-page"
+  | "category-menu"
+  | "collection-menu"
+  | "cart-page"
+  | "checkout-page"
+  | "order-page";
+
+export interface StorePart {
+  id: StorePartId;
+  name: string;
+}

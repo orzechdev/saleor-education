@@ -78,12 +78,17 @@ export const MenuIcon = styled.div`
   }
 `;
 
-export const MenuItem = styled.li<{ active: boolean; opened?: boolean }>`
+export const MenuItem = styled.li<{
+  active: boolean;
+  opened?: boolean;
+  subMenu?: boolean;
+}>`
   background: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+  padding-left: ${({ subMenu }) => (subMenu ? "1rem" : "0")};
   a {
     color: #2a2a2a;
     display: block;

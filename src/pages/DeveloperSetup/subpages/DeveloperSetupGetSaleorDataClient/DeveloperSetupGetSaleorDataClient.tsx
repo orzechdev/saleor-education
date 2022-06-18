@@ -1,6 +1,6 @@
 import { useActor } from "@xstate/react";
 import React, { useContext } from "react";
-import { StateContext } from "../../components/StateProvider";
+import { StateContext } from "../../../../components/StateProvider";
 import * as S from "./styles";
 
 const DeveloperSetupGetSaleorDataClient: React.FC = () => {
@@ -155,7 +155,11 @@ const App: React.FC = () => {
             <h2>&larr; Back</h2>
           </S.LeftActionItem>
         </S.LeftActions>
-        <S.RightActions></S.RightActions>
+        <S.RightActions>
+          <S.RightActionItem to="/developer/build">
+            <h2>Next &rarr;</h2>
+          </S.RightActionItem>
+        </S.RightActions>
       </S.Actions>
     </S.Root>
   );
