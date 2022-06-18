@@ -262,7 +262,7 @@ const DeveloperSetupFrontend: React.FC = () => {
           </S.LeftActionItem>
         </S.LeftActions>
         <S.RightActions>
-          <S.RightActionItem to="/developer/setup-get-saleor-data">
+          <S.RightActionItem to="/developer/setup/get-saleor-data">
             <h2>Next &rarr;</h2>
           </S.RightActionItem>
         </S.RightActions>

@@ -97,11 +97,11 @@ const DeveloperSetup: React.FC = () => {
           {developerState.context.knowledge?.includes(
             developerState.context.techStackFrontend as KnowledgeId
           ) ? (
-            <S.RightActionItem to="/developer/setup-get-saleor-data">
+            <S.RightActionItem to="/developer/setup/get-saleor-data">
               <h2>Next &rarr;</h2>
             </S.RightActionItem>
           ) : (
-            <S.RightActionItem to="/developer/setup-frontend">
+            <S.RightActionItem to="/developer/setup/frontend">
               <h2>Next &rarr;</h2>
             </S.RightActionItem>
           )}

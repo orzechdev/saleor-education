@@ -151,7 +151,7 @@ const App: React.FC = () => {
       </S.Options>
       <S.Actions>
         <S.LeftActions>
-          <S.LeftActionItem to="/developer/setup-get-saleor-data">
+          <S.LeftActionItem to="/developer/setup/get-saleor-data">
             <h2>&larr; Back</h2>
           </S.LeftActionItem>
         </S.LeftActions>

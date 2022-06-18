@@ -7,6 +7,7 @@ import {
   designerMenuItems,
   developerMenuItems,
   DeveloperPath,
+  DeveloperSetupPath,
   salespersonMenuItems,
 } from "./misc/items";
 import Designer from "./pages/Designer";
@@ -19,30 +20,43 @@ import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Salesperson from "./pages/Salesperson";
 
+interface AllowItem<T extends string | number | symbol> {
+  allow: boolean;
+  subAllowList?: Record<T, boolean>;
+}
+
 function App() {
   const globalServices = useContext(StateContext);
   const [developerState] = useActor(globalServices.developerStateService);
 
-  const developerMenuAllowList: Record<DeveloperPath, boolean> = {
-    setup: !!(
-      developerState.context.techStackStyle &&
-      developerState.context.techStackFrontend
-    ),
-    "setup-frontend": !!(
+  const developerSetupMenuAllowList: Record<DeveloperSetupPath, boolean> = {
+    frontend: !!(
       developerState.context.techStackStyle &&
       developerState.context.techStackFrontend &&
       !developerState.context.knowledge?.includes(
         developerState.context.techStackFrontend
       )
     ),
-    "setup-get-saleor-data": !!(
+    "get-saleor-data": !!(
       developerState.context.techStackStyle &&
       developerState.context.techStackFrontend
     ),
-    "setup-get-saleor-data-client": !!(
+    "get-saleor-data-client": !!(
       developerState.context.techStackStyle &&
       developerState.context.techStackFrontend
     ),
+  };
+  const developerMenuAllowList: Record<
+    DeveloperPath,
+    AllowItem<DeveloperSetupPath>
+  > = {
+    setup: {
+      allow: !!(
+        developerState.context.techStackStyle &&
+        developerState.context.techStackFrontend
+      ),
+      subAllowList: developerSetupMenuAllowList,
+    },
   };
 
   return (
@@ -55,9 +69,17 @@ function App() {
             element={
               <Layout
                 path="developer"
-                menuItems={developerMenuItems.filter(
-                  (item) => developerMenuAllowList[item.path]
-                )}
+                menuItems={developerMenuItems
+                  .filter((item) => developerMenuAllowList[item.path].allow)
+                  .map((item) => ({
+                    ...item,
+                    children: item.children?.filter(
+                      (child) =>
+                        developerMenuAllowList[item.path].subAllowList?.[
+                          child.path
+                        ]
+                    ),
+                  }))}
               />
             }
           >
@@ -65,21 +87,21 @@ function App() {
             {developerMenuAllowList.setup && (
               <Route path="setup" element={<DeveloperSetup />} />
             )}
-            {developerMenuAllowList["setup-frontend"] && (
+            {developerSetupMenuAllowList["frontend"] && (
               <Route
-                path="setup-frontend"
+                path="setup/frontend"
                 element={<DeveloperSetupFrontend />}
               />
             )}
-            {developerMenuAllowList["setup-get-saleor-data"] && (
+            {developerSetupMenuAllowList["get-saleor-data"] && (
               <Route
-                path="setup-get-saleor-data"
+                path="setup/get-saleor-data"
                 element={<DeveloperSetupGetSaleorData />}
               />
             )}
-            {developerMenuAllowList["setup-get-saleor-data-client"] && (
+            {developerSetupMenuAllowList["get-saleor-data-client"] && (
               <Route
-                path="setup-get-saleor-data-client"
+                path="setup/get-saleor-data-client"
                 element={<DeveloperSetupGetSaleorDataClient />}
               />
             )}
