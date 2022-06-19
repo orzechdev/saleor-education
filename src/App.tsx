@@ -9,6 +9,8 @@ import {
 import Designer from "./pages/Designer";
 import Developer from "./pages/Developer";
 import DeveloperBuild, {
+  DeveloperBuildSupportChannels,
+  DeveloperBuildSupportLanguages,
   DeveloperBuildHomeShowcasePage,
   DeveloperBuildProductListPage,
   DeveloperBuildProductPage,
@@ -81,6 +83,18 @@ function App() {
             )}
             {developerAccessList.build && (
               <Route path="build" element={<DeveloperBuild />} />
+            )}
+            {developerAccessList.build.subAccessList?.["support-channels"] && (
+              <Route
+                path="build/support-channels"
+                element={<DeveloperBuildSupportChannels />}
+              />
+            )}
+            {developerAccessList.build.subAccessList?.["support-languages"] && (
+              <Route
+                path="build/support-languages"
+                element={<DeveloperBuildSupportLanguages />}
+              />
             )}
             {developerAccessList.build.subAccessList?.[
               "home-showcase-page"

@@ -1,3 +1,5 @@
+export { default as DeveloperBuildSupportChannels } from "./DeveloperBuildSupportChannels";
+export { default as DeveloperBuildSupportLanguages } from "./DeveloperBuildSupportLanguages";
 export { default as DeveloperBuildProductPage } from "./DeveloperBuildProductPage";
 export { default as DeveloperBuildProductListPage } from "./DeveloperBuildProductListPage";
 export { default as DeveloperBuildHomeShowcasePage } from "./DeveloperBuildHomeShowcasePage";

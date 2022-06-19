@@ -5,6 +5,8 @@ export const developerSetupPaths = [
   "get-saleor-data-client",
 ] as const;
 export const developerBuildPaths = [
+  "support-channels",
+  "support-languages",
   "home-showcase-page",
   "product-list-page",
   "product-page",
@@ -61,6 +63,14 @@ export const developerMenuItems: MenuItem<
     path: "build",
     label: "Build",
     children: [
+      {
+        path: "support-channels",
+        label: "Support channels",
+      },
+      {
+        path: "support-languages",
+        label: "Support languages",
+      },
       {
         path: "home-showcase-page",
         label: "Home showcase page",

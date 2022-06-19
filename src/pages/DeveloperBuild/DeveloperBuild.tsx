@@ -1,8 +1,8 @@
 import { useActor } from "@xstate/react";
 import React, { useContext } from "react";
 import { StateContext } from "../../components/StateProvider";
-import { storePartList } from "../Developer/data";
-import { StorePart } from "../Developer/types";
+import { storeFeatureList, storePartList } from "../Developer/data";
+import { StoreFeature, StorePart } from "../Developer/types";
 import * as S from "./styles";
 
 const DeveloperBuild: React.FC = () => {
@@ -12,6 +12,10 @@ const DeveloperBuild: React.FC = () => {
   const isStorePartChecked = (storePart: StorePart) => {
     return developerState.context.storePart?.includes(storePart.id);
   };
+  const isStoreFeatureChecked = (storeFeature: StoreFeature) => {
+    return developerState.context.storeFeature?.includes(storeFeature.id);
+  };
+
   const onStorePartChange = (storePart: StorePart) => {
     const newValue = isStorePartChecked(storePart)
       ? developerState.context.storePart?.filter(
@@ -21,6 +25,18 @@ const DeveloperBuild: React.FC = () => {
 
     globalServices.developerStateService.send({
       type: "SET_STORE_PART",
+      value: newValue,
+    });
+  };
+  const onStoreFeatureChange = (storeFeature: StoreFeature) => {
+    const newValue = isStoreFeatureChecked(storeFeature)
+      ? developerState.context.storeFeature?.filter(
+          (item) => item !== storeFeature.id
+        )
+      : [...(developerState.context.storeFeature || []), storeFeature.id];
+
+    globalServices.developerStateService.send({
+      type: "SET_STORE_FEATURE",
       value: newValue,
     });
   };
@@ -44,6 +60,28 @@ const DeveloperBuild: React.FC = () => {
               &nbsp;
               <label htmlFor={`storePart-${storePart.id}`}>
                 {storePart.name}
+              </label>
+              &nbsp; &nbsp;
+            </React.Fragment>
+          );
+        })}
+      </S.Options>
+      <S.Options>
+        <p>What extra features would you like to include?</p>
+        {storeFeatureList.map((storeFeature) => {
+          return (
+            <React.Fragment key={storeFeature.id}>
+              <input
+                type="checkbox"
+                name="storeFeature"
+                value={storeFeature.id}
+                id={`storeFeature-${storeFeature.id}`}
+                checked={isStoreFeatureChecked(storeFeature)}
+                onChange={() => onStoreFeatureChange(storeFeature)}
+              />
+              &nbsp;
+              <label htmlFor={`storeFeature-${storeFeature.id}`}>
+                {storeFeature.name}
               </label>
               &nbsp; &nbsp;
             </React.Fragment>

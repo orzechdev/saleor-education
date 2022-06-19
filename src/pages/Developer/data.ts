@@ -1,5 +1,6 @@
 import {
   Knowledge,
+  StoreFeature,
   StorePart,
   TechStackFrontend,
   TechStackStyle,
@@ -106,5 +107,16 @@ export const storePartList: StorePart[] = [
   {
     id: "order-page",
     name: "Order page",
+  },
+];
+
+export const storeFeatureList: StoreFeature[] = [
+  {
+    id: "multi-channel",
+    name: "Multiple channels",
+  },
+  {
+    id: "multi-language",
+    name: "Multiple languages",
   },
 ];

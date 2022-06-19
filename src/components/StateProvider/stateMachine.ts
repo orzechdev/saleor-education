@@ -1,6 +1,7 @@
 import { createMachine, assign } from "xstate";
 import {
   KnowledgeId,
+  StoreFeatureId,
   StorePartId,
   TechStackFrontendId,
   TechStackStyleId,
@@ -11,6 +12,7 @@ export type DeveloperStateContext = {
   techStackFrontend?: TechStackFrontendId;
   techStackStyle?: TechStackStyleId;
   storePart?: StorePartId[];
+  storeFeature?: StoreFeatureId[];
 };
 
 export const developerStateMachine = createMachine(
@@ -35,6 +37,10 @@ export const developerStateMachine = createMachine(
         | {
             type: "SET_STORE_PART";
             value?: StorePartId[];
+          }
+        | {
+            type: "SET_STORE_FEATURE";
+            value?: StoreFeatureId[];
           },
     },
     states: {
@@ -98,6 +104,21 @@ export const developerStateMachine = createMachine(
           },
         },
       },
+      storeFeature: {
+        id: "storeFeature",
+        initial: "start",
+        type: "parallel",
+        states: {
+          start: {
+            on: {
+              SET_STORE_FEATURE: {
+                target: "start",
+                actions: "setStoreFeature",
+              },
+            },
+          },
+        },
+      },
     },
   },
   {
@@ -121,6 +142,12 @@ export const developerStateMachine = createMachine(
       setStorePart: assign({
         storePart: (context, event) =>
           event.type !== "SET_STORE_PART" ? context.storePart : event.value,
+      }),
+      setStoreFeature: assign({
+        storeFeature: (context, event) =>
+          event.type !== "SET_STORE_FEATURE"
+            ? context.storeFeature
+            : event.value,
       }),
     },
   }

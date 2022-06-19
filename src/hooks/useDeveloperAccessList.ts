@@ -6,7 +6,11 @@ import {
   DeveloperPath,
   DeveloperSetupPath,
 } from "../misc/items";
-import { StorePartId, TechStackFrontendId } from "../pages/Developer/types";
+import {
+  StoreFeatureId,
+  StorePartId,
+  TechStackFrontendId,
+} from "../pages/Developer/types";
 
 interface AccessItem<T extends string | number | symbol> {
   allow: boolean;
@@ -36,6 +40,12 @@ export const useDeveloperAccessList = (): DeveloperAccessList => {
   const hasStorePart = (storePart?: StorePartId) =>
     !!(storePart && developerState.context.storePart?.includes(storePart));
 
+  const hasStoreFeature = (storeFeature?: StoreFeatureId) =>
+    !!(
+      storeFeature &&
+      developerState.context.storeFeature?.includes(storeFeature)
+    );
+
   const developerSetupMenuAccessList: Record<DeveloperSetupPath, boolean> = {
     frontend:
       commonAccessCheck &&
@@ -44,6 +54,8 @@ export const useDeveloperAccessList = (): DeveloperAccessList => {
     "get-saleor-data-client": commonAccessCheck,
   };
   const developerBuildMenuAccessList: Record<DeveloperBuildPath, boolean> = {
+    "support-channels": commonAccessCheck && hasStoreFeature("multi-channel"),
+    "support-languages": commonAccessCheck && hasStoreFeature("multi-language"),
     "home-showcase-page":
       commonAccessCheck && hasStorePart("home-showcase-page"),
     "product-list-page": commonAccessCheck && hasStorePart("product-list-page"),

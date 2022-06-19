@@ -45,3 +45,10 @@ export interface StorePart {
   id: StorePartId;
   name: string;
 }
+
+export type StoreFeatureId = "multi-channel" | "multi-language";
+
+export interface StoreFeature {
+  id: StoreFeatureId;
+  name: string;
+}
