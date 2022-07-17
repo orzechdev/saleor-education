@@ -1,12 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import { useDeveloperAccessList } from "./hooks/useDeveloperAccessList";
-import {
-  designerMenuItems,
-  developerMenuItems,
-  salespersonMenuItems,
-} from "./misc/items";
-import Designer from "./pages/Designer";
+import { developerMenuItems, salespersonMenuItems } from "./misc/items";
 import Developer from "./pages/Developer";
 import DeveloperBuild, {
   DeveloperBuildSupportChannels,
@@ -149,12 +144,6 @@ function App() {
             {developerAccessList.deploy && (
               <Route path="deploy" element={<DeveloperDeploy />} />
             )}
-          </Route>
-          <Route
-            path="designer"
-            element={<Layout path="designer" menuItems={designerMenuItems} />}
-          >
-            <Route index element={<Designer />} />
           </Route>
           <Route
             path="salesperson"

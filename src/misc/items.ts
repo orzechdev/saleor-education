@@ -16,16 +16,14 @@ export const developerBuildPaths = [
   "checkout-page",
   "order-page",
 ] as const;
-export const designerPaths = [] as const;
 export const salespersonPaths = [] as const;
 
 export type DeveloperPath = typeof developerPaths[number];
 export type DeveloperSetupPath = typeof developerSetupPaths[number];
 export type DeveloperBuildPath = typeof developerBuildPaths[number];
-export type DesignerPath = typeof designerPaths[number];
 export type SalespersonPath = typeof salespersonPaths[number];
 
-export type MenuPath = DeveloperPath | DesignerPath | SalespersonPath;
+export type MenuPath = DeveloperPath | SalespersonPath;
 export type SubMenuPath = DeveloperSetupPath | DeveloperBuildPath;
 
 export interface MenuItem<T, S> {
@@ -110,7 +108,5 @@ export const developerMenuItems: MenuItem<
     label: "Deploy",
   },
 ];
-
-export const designerMenuItems: MenuItem<DesignerPath, undefined>[] = [];
 
 export const salespersonMenuItems: MenuItem<SalespersonPath, undefined>[] = [];

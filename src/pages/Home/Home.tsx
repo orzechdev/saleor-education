@@ -15,12 +15,6 @@ const Home: React.FC = () => {
               <p>Development guide</p>
             </>
           </S.HeaderMenuItem>
-          <S.HeaderMenuItem to="/designer">
-            <>
-              <h2>Designer &rarr;</h2>
-              <p>Design guide</p>
-            </>
-          </S.HeaderMenuItem>
           <S.HeaderMenuItem to="/salesperson">
             <>
               <h2>Salesperson &rarr;</h2>
